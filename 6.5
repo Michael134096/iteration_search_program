@@ -1,0 +1,392 @@
+# -*- coding: cp1251 -*-
+#программа восстанавливает алгоритм решения 
+#по выходному значению
+#и нескольким входным значениям
+#
+#This program fing algorithm of solving
+#using output data
+#and some input data
+#
+#Сделать число итераций равным числу входных данных -1. Cделать функцию для итераций.
+#использование словарей для соответствия числа его логическому представлению.
+
+from math import *
+import time
+start = time.time()
+
+#выходное значение. output data.
+c = float(input ('output data: c=? '))
+#для тестов. for tests.
+#c=sqrt(2)+sqrt(3)+exp(1)
+print c
+c=float(c)
+
+#входные данные. input data.
+
+d = input ('input some data as 1.9, 2.3, 5.2: d=? ')
+"""
+#для тестов. for tests.
+d=sqrt(2),sqrt(3),exp(1),3
+"""
+d=list(d)
+d=[float(i) for i in d]
+
+"""
+#индикатор знака выходного значения. Indicator's sign of output data
+c1=1 #индикатор знака по умолчанию положителен. Indicator's sign is default positive.
+if c<0:
+    c=-c
+    c1=-1 #индикатор знака - изменен на отрицательный. Учтем это в логарифмах.
+          #Indicator's sign change ot negative. Take it into account in logarithms.
+"""
+
+#дополнительные стандартные величины. More standard constants.
+#z1=range(1,11)
+z1=[2,3,5,7]
+z2=[pi,exp(1),sqrt(2),sqrt(3)]
+z=z1+z2
+d=d+z
+#удалим повторы
+d = [e for i,e in enumerate(d) if e not in d[:i]]
+dold=d
+#1 iteration. Первая итерация.
+#4 actions. 4 действия.
+#Error, must go to zero. Задаем погрешность, которая должна будет стремиться к нулю.
+k=100.1
+
+i=0
+ddivlist=[]
+dmullist=[]
+dsublist=[]
+daddlist=[]
+while i<len(d):
+    j=0
+    while j<len(d): 
+        #division. деление
+        ddiv=d[i]/d[j]
+        ddivlist.append(ddiv)
+        if abs(ddiv-c)<k:
+            k=abs(ddiv-c)
+            x=['ddiv =',ddiv, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[ddiv, '=', d[i], '/', d[j],'Error =',k]
+        #multiplication. умножение
+        dmul=d[i]*d[j]
+        dmullist.append(dmul)
+        if abs(dmul-c)<k:
+            k=abs(dmul-c)
+            x=['dmul =',dmul, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dmul, '=', d[i], '*', d[j],'Error =',k]
+        #subtraction. вычитание
+        dsub=d[i]-d[j]
+        dsublist.append(dsub)
+        if abs(dsub-c)<k:
+            k=abs(dsub-c)
+            x=['dsub =',dsub, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dsub, '=', d[i], '-', d[j],'Error =',k]
+        #addition. сложение
+        dadd=d[i]+d[j]
+        daddlist.append(dadd)
+        if abs(dadd-c)<k:
+            k=abs(dadd-c)
+            x=['dadd =',dadd, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dadd, '=', d[i], '+', d[j],'Error =',k]
+        j+= 1
+    i+=1
+if x1[6]<0.000001:
+    print x1
+#подготовка к следующей итерации.
+#сделаем общий список, отсортируем, удалим повторы, удалим отрицательные значения.
+#Prepare to next iteration.
+#Create full list, sort it, delete repeat, delete negative data.
+d4actions=ddivlist+dmullist+dsublist+daddlist
+d4actions.sort()
+d4actions = [e for i,e in enumerate(d4actions) if e not in d4actions[:i]] 
+
+d4actions1=[]
+for i in d4actions:
+    if i>0:
+        d4actions1.append(i)
+d4actions=d4actions1
+
+
+
+#--------------------------------------------------------------------
+#2 iteration
+
+i=0
+ddivlist=[]
+dmullist=[]
+dsublist=[]
+daddlist=[]
+d=d4actions
+#print d
+while i<len(d):
+    j=0
+    while j<len(d): 
+        #division. деление
+        ddiv=d[i]/d[j]
+        ddivlist.append(ddiv)
+        if abs(ddiv-c)<k:
+            k=abs(ddiv-c)
+            x=['ddiv =',ddiv, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[ddiv, '=', d[i], '/', d[j],'Error =',k]
+        #multiplication. умножение
+        dmul=d[i]*d[j]
+        dmullist.append(dmul)
+        if abs(dmul-c)<k:
+            k=abs(dmul-c)
+            x=['dmul =',dmul, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dmul, '=', d[i], '*', d[j],'Error =',k]
+        #subtraction. вычитание
+        dsub=d[i]-d[j]
+        dsublist.append(dsub)
+        if abs(dsub-c)<k:
+            k=abs(dsub-c)
+            x=['dsub =',dsub, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dsub, '=', d[i], '-', d[j],'Error =',k]
+        #addition. сложение
+        dadd=d[i]+d[j]
+        daddlist.append(dadd)
+        if abs(dadd-c)<k:
+            k=abs(dadd-c)
+            x=['dadd =',dadd, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dadd, '=', d[i], '+', d[j],'Error =',k]
+        j+= 1
+    i+=1
+print x1
+
+#------------------------------
+#выходное значение. output data.
+#c = float(input ('output data: c=? '))
+#для тестов. for tests.
+#c=sqrt(2)+sqrt(3)+exp(1)
+c=x1[4]
+print c
+c=float(c)
+
+#входные данные. input data.
+"""
+d = input ('input some data as 1.9, 2.3, 5.2: d=? ')
+"""
+"""
+для тестов. for tests.
+d=sqrt(2),sqrt(3),exp(1),3
+d=list(d)
+"""
+#d=[float(i) for i in d]
+
+"""
+#индикатор знака выходного значения. Indicator's sign of output data
+c1=1 #индикатор знака по умолчанию положителен. Indicator's sign is default positive.
+if c<0:
+    c=-c
+    c1=-1 #индикатор знака - изменен на отрицательный. Учтем это в логарифмах.
+          #Indicator's sign change ot negative. Take it into account in logarithms.
+"""
+
+#дополнительные стандартные величины. More standard constants.
+#z1=range(1,11)
+"""
+z1=[2,3,5,7]
+z2=[pi,exp(1),sqrt(2),sqrt(3)]
+z=z1+z2
+d=d+z
+#удалим повторы
+d = [e for i,e in enumerate(d) if e not in d[:i]]
+"""
+d=dold
+#1 iteration. Первая итерация.
+#4 actions. 4 действия.
+#Error, must go to zero. Задаем погрешность, которая должна будет стремиться к нулю.
+k=100.1
+
+i=0
+ddivlist=[]
+dmullist=[]
+dsublist=[]
+daddlist=[]
+while i<len(d):
+    j=0
+    while j<len(d): 
+        #division. деление
+        ddiv=d[i]/d[j]
+        ddivlist.append(ddiv)
+        if abs(ddiv-c)<k:
+            k=abs(ddiv-c)
+            x=['ddiv =',ddiv, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[ddiv, '=', d[i], '/', d[j],'Error =',k]
+        #multiplication. умножение
+        dmul=d[i]*d[j]
+        dmullist.append(dmul)
+        if abs(dmul-c)<k:
+            k=abs(dmul-c)
+            x=['dmul =',dmul, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dmul, '=', d[i], '*', d[j],'Error =',k]
+        #subtraction. вычитание
+        dsub=d[i]-d[j]
+        dsublist.append(dsub)
+        if abs(dsub-c)<k:
+            k=abs(dsub-c)
+            x=['dsub =',dsub, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dsub, '=', d[i], '-', d[j],'Error =',k]
+        #addition. сложение
+        dadd=d[i]+d[j]
+        daddlist.append(dadd)
+        if abs(dadd-c)<k:
+            k=abs(dadd-c)
+            x=['dadd =',dadd, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dadd, '=', d[i], '+', d[j],'Error =',k]
+        j+= 1
+    i+=1
+if x1[6]<0.000001:
+    print x1
+#подготовка к следующей итерации.
+#сделаем общий список, отсортируем, удалим повторы, удалим отрицательные значения.
+#Prepare to next iteration.
+#Create full list, sort it, delete repeat, delete negative data.
+d4actions=ddivlist+dmullist+dsublist+daddlist
+d4actions.sort()
+d4actions = [e for i,e in enumerate(d4actions) if e not in d4actions[:i]] 
+
+d4actions1=[]
+for i in d4actions:
+    if i>0:
+        d4actions1.append(i)
+d4actions=d4actions1
+
+
+
+"""
+#---------
+#находим d[j]
+k=100.1
+c=x1[4]
+print c
+i=0
+ddivlist=[]
+dmullist=[]
+dsublist=[]
+daddlist=[]
+d=d4actions
+#print d
+while i<len(d):
+    j=0
+    while j<len(d): 
+        #division. деление
+        ddiv=d[i]/d[j]
+        ddivlist.append(ddiv)
+        if abs(ddiv-c)<k:
+            k=abs(ddiv-c)
+            x=['ddiv =',ddiv, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[ddiv, '=', d[i], '/', d[j],'Error =',k]
+        #multiplication. умножение
+        dmul=d[i]*d[j]
+        dmullist.append(dmul)
+        if abs(dmul-c)<k:
+            k=abs(dmul-c)
+            x=['dmul =',dmul, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dmul, '=', d[i], '*', d[j],'Error =',k]
+        #subtraction. вычитание
+        dsub=d[i]-d[j]
+        dsublist.append(dsub)
+        if abs(dsub-c)<k:
+            k=abs(dsub-c)
+            x=['dsub =',dsub, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dsub, '=', d[i], '-', d[j],'Error =',k]
+        #addition. сложение
+        dadd=d[i]+d[j]
+        daddlist.append(dadd)
+        if abs(dadd-c)<k:
+            k=abs(dadd-c)
+            x=['dadd =',dadd, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dadd, '=', d[i], '+', d[j],'Error =',k]
+        j+= 1
+    i+=1
+print x1
+
+#-----
+#нашли d[j]
+"""
+
+
+
+
+#подготовка к следующей итерации.
+#сделаем общий список, отсортируем, удалим повторы, удалим отрицательные значения.
+#Prepare to next iteration.
+#Create full list, sort it, delete repeat, delete negative data.
+d4actions=ddivlist+dmullist+dsublist+daddlist
+d4actions.sort()
+d4actions1=[]
+for i in d4actions:
+    if 0<i<=10:
+        d4actions1.append(i)
+d4actions=d4actions1
+#print len(d4actions)
+
+"""
+#--------------------------------------------------------------------
+#3 iteration
+#MemoryError
+
+i=0
+ddivlist=[]
+dmullist=[]
+dsublist=[]
+daddlist=[]
+d=d4actions
+#print d
+while i<len(d):
+    j=0
+    while j<len(d): 
+        #division. деление
+        ddiv=d[i]/d[j]
+        ddivlist.append(ddiv)
+        if abs(ddiv-c)<k:
+            k=abs(ddiv-c)
+            x=['ddiv =',ddiv, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[ddiv, '=', d[i], '/', d[j],'Error =',k]
+        #multiplication. умножение
+        dmul=d[i]*d[j]
+        dmullist.append(dmul)
+        if abs(dmul-c)<k:
+            k=abs(dmul-c)
+            x=['dmul =',dmul, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dmul, '=', d[i], '*', d[j],'Error =',k]
+        #subtraction. вычитание
+        dsub=d[i]-d[j]
+        dsublist.append(dsub)
+        if abs(dsub-c)<k:
+            k=abs(dsub-c)
+            x=['dsub =',dsub, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dsub, '=', d[i], '-', d[j],'Error =',k]
+        #addition. сложение
+        dadd=d[i]+d[j]
+        daddlist.append(dadd)
+        if abs(dadd-c)<k:
+            k=abs(dadd-c)
+            x=['dadd =',dadd, 'i =',i, 'd[i] =',d[i], 'j =',j, 'd[j] =',d[j],'Error =',k]
+            x1=[dadd, '=', d[i], '+', d[j],'Error =',k]
+        j+= 1
+    i+=1
+print x1
+
+#подготовка к следующей итерации.
+#сделаем общий список, отсортируем, удалим повторы, удалим отрицательные значения.
+#Prepare to next iteration.
+#Create full list, sort it, delete repeat, delete negative data.
+d4actions=ddivlist+dmullist+dsublist+daddlist
+d4actions.sort()
+d4actions1=[]
+for i in d4actions:
+    if 0<i<=10:
+        d4actions1.append(i)
+d4actions=d4actions1
+print len(d4actions)
+
+#d4actions = [e for i,e in enumerate(d4actions) if e not in d4actions[:i]] 
+"""
+finish = time.time()
+#print 'time',(finish - start)
+
+
