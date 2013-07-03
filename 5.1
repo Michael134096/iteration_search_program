@@ -1,0 +1,180 @@
+# -*- coding: cp1251 -*-
+#iteration 2 step
+from math import *
+#--------------
+#This version have MemoryError
+#0 iteration
+c = float(input ('c=? '))
+#c=1/sqrt(2)
+print 'c =',c
+c1=1 #индикатор знака по умолчанию положителен.
+if c<0:
+    c=-c
+    c1=-1 #индикатор знака - изменен на отрицательный.
+k=10
+
+#-1 iteration
+z1=range(1,11)
+z2=[]
+z2=[pi,exp(1)]
+z3=[]
+z3=[sqrt(2),sqrt(3)]
+z4=[]
+z4=[sqrt(2)/2.0, sqrt(3)/2.0]
+z5=[2**(1/3.0),3**(1/3.0)]
+if c>=1:
+    z6=[log(2),log10(2)]
+else:
+    z6=[-log(1/2.0),-log10(1/2.0)]
+z=z1
+z234=z2+z3+z4+z5+z6
+if c1>=1:
+   z2345=['pi','exp(1)','sqrt(2)','sqrt(3)','sqrt(2)/2.0', 'sqrt(3)/2.0', '2**(1/3.0)','3**(1/3.0)','log(2)','log10(2)']
+else:
+   z2345=['pi','exp(1)','sqrt(2)','sqrt(3)','sqrt(2)/2.0', 'sqrt(3)/2.0', '2**(1/3.0)','3**(1/3.0)','-log(1/2.0)','-log10(1/2.0)']
+#z=z1+z234
+a=z
+#print len(a)
+
+#0 iteration
+b=a = [float(i) for i in a]
+i=0
+adivb=[]
+while i<len(a):
+    j=0
+    while j<len(b): 
+        ab=a[i]/b[j]
+        adivb.append(ab)
+        j+= 1
+    i+=1
+#sqrt1=[sqrt(i) for i in a]
+#exp1=[sqrt(i) for i in a]
+#print len(adivb)
+#-------------
+#1 iteration
+i=0
+adivb1=[]
+acomplb1=[]
+asumb1=[]
+asubb1=[]
+a1=adivb
+b1=z234
+while i<len(a1):
+    j=0
+    while j<len(b1): 
+        ab1=a1[i]/b1[j] #div
+        #adivb1.append(ab1)
+        if abs(ab1-c)<k:
+            k=abs(ab1-c)
+            q='/'
+            p=j
+            r=i
+            g=[a1[i],'/',z2345[j]]
+#           g=[a1[i],'/',b1[j]]
+        ax1=a1[i]*b1[j] #compl
+        #acomplb1.append(ax1)
+        if abs(ax1-c)<k:
+            k=abs(ax1-c)
+            q='*'
+            p=j
+            r=i
+            g=[a1[i],'*',z2345[j]]
+#           g=[a1[i],'*',b1[j]]
+        ay1=a1[i]+b1[j] #sum
+        #asumb1.append(ay1)
+        if abs(ay1-c)<k:
+            k=abs(ay1-c)
+            q='+'
+            p=j
+            r=i
+            g=[a1[i],'+',z2345[j]]
+#           g=[a1[i],'+',b1[j]]
+        az1=a1[i]-b1[j] #subtraction
+        #asubb1.append(az1)
+        if abs(az1-c)<k:
+            k=abs(az1-c)
+            q='-'
+            p=j
+            r=i
+            g=[a1[i],'-',z2345[j]]
+#           g=[a1[i],'-',b1[j]]
+        j+= 1
+    i+=1
+#print r,k,p,z234[p]
+print g
+#-----------------------
+#aabb=adivb1+acomplb1+asumb1+asubb1
+#print len(aabb)
+#-------------------------
+#print "----------------------------"
+"""
+i=0
+k=10
+while i<len(aabb):
+    if abs(aabb[i]-c)<k:
+        k=abs(aabb[i]-c)
+        kk=i
+    i+=1
+#print 'c = ',c
+#print 'index =',kk
+#print 'ближайшее значение =',aabb[kk]
+#print 'k =',k #error
+
+
+if kk>9:
+    bb=(kk)%10
+
+if 0<=kk<=9:
+    print '1','/',kk+1
+elif 10<=kk<=19:
+    print '2','/',bb+1
+elif 20<=kk<=29:
+    print '3','/',bb+1
+elif 30<=kk<=39:
+    print '4','/',bb+1
+elif 40<=kk<=49:
+    print '5','/',bb+1
+elif 50<=kk<=59:
+    print '6','/',bb+1
+elif 60<=kk<=69:
+    print '7','/',bb+1
+elif 70<=kk<=79:
+    print '8','/',bb+1
+elif 80<=kk<=89:
+    print '9','/',bb+1
+elif 90<=kk<=99:
+    print '10','/',bb+1
+"""
+#-------
+#if c1>=1:
+#   z234=[pi,exp(1),sqrt(2),sqrt(3),sqrt(2)/2.0, sqrt(3)/2.0, 2**(1/3.0),3**(1/3.0),log(2),log10(2)]
+#else:
+#   z234=[pi,exp(1),sqrt(2),sqrt(3),sqrt(2)/2.0, sqrt(3)/2.0, 2**(1/3.0),3**(1/3.0),-log(1/2.0),-log10(1/2.0)]
+
+"""
+#1 iteration
+if kk>99:
+    bb=(kk)%100
+if 0<=kk<=99:
+    pass
+elif 100<=kk<=199:
+    print '1','/','(','1','/',kk+1,')'
+elif 200<=kk<=299:
+    print '1','/','(','2','/',bb+1,')'
+elif 300<=kk<=399:
+    print '1','/','(','3','/',bb+1,')'
+elif 400<=kk<=499:
+    print '1','/','(','4','/',bb+1,')'
+elif 500<=kk<=599:
+    print '1','/','(','5','/',bb+1,')'
+elif 600<=kk<=690:
+    print '1','/','(','6','/',bb+1,')'
+elif 700<=kk<=799:
+    print '1','/','(','7','/',bb+1,')'
+elif 800<=kk<=899:
+    print '1','/','(','8','/',bb+1,')'
+elif 900<=kk<=999:
+    print '1','/','(','9','/',bb+1,')'
+elif 1000<=kk<=1099:
+    print '1','/','(','9','/',bb+1,')'
+"""
