@@ -1,0 +1,251 @@
+# -*- coding: cp1251 -*-
+#Concatenate 3.2.py+2.3.py
+#==========================
+#Программа для нахождения записи введенного вами числа
+#как отношения двух целых чисел либо
+#как функции целого числа.
+#
+#поддерживаемые функции:
+#'sqrt(y)','exp(y)','log(y)','log10(y)','y**(1/3)','y**2','y**3','2**y','log2(y)'
+
+from math import *
+print ('For example: c=? (0.3752*sqrt(3.0)+exp(2.0))/cos(pi/4.0)-2.0**(-2.0)')
+#print ('Use 0<c<9802' for 'a=range(1,101)')
+c = float(input ('c=? '))
+print 'c =',c
+#Проверка отрицательности:
+c1=0
+if c<0: #Будем работать с положительными числами. Учтем это в логарифмах.
+    c=-c
+    c1=-1
+#==========================
+z=0 #индикатор
+integer=[float(i) for i in range(1,101)]
+i=0
+while i<len(integer):
+    if c==integer[i]:
+        z=1 #индикатор
+        print 'integer'
+    i+=1
+#==========================
+
+#Add 2.3.py
+"""
+##all variables:
+##a, b, c, d, e, j, i, f, g, h, k, l, m, n, e1, l1
+##aa, bb, cc, dd, ee, jj, ii, ff, gg, hh, kk, ll, mm, nn, ee1, ll1
+##p,q, 
+##r
+"""
+#import math
+#from math import *
+#
+#Division
+#used variables: a, b, c, d, e, j, i, e1. (7 items) (j and i are iteration's variables)
+#c = float(raw_input('c=? '))
+#print ('For example: c=? (0.3752*sqrt(3)+exp(2))/cos(pi/4)-2**(-2)')
+#print ('Use 0<c<9802' for 'a=range(1,100)')
+#c = input ('c=? ')
+a=range(1,101) #1.you may change here. 'a=change(1,l1)' or 'a=change(1,1001)'
+b=a = [float(i) for i in a]
+i=0
+d=1.1
+e=[]
+while i<len(a):
+    j=0
+    while j<len(b): 
+        if abs(a[i]/b[j]-c)< d:
+            d=abs(a[i]/b[j]-c)
+            e.append([a[i],'/',b[j],'=',a[i]/b[j],'Error =',d])
+            e1=a[i]/b[j]
+        j+= 1
+    i+=1
+"print e[-1]"
+#====================
+#Complication
+#used variables: f, g, h, k, l, m, n, l1 (7 items)
+"h = float(raw_input('h=? '))"
+h=c
+f=a
+#f=range(0,101) #you may stay 'f=range(1,11)' or 'f=range(1,1001)'
+g=f = [float(n) for n in f]
+n=0
+k=1.1
+l=[]
+while n<len(f):
+    m=0
+    while m<len(g): 
+        if abs(f[n]*g[m]-h)< k:
+            k=abs(f[n]*g[m]-h)
+            l.append([f[n],'*',g[m],'=',f[n]*g[m],'Error =',k])
+            l1=f[n]*g[m]
+        m+= 1
+    n+=1
+"print l[-1]"
+#=================
+#Addittion
+#added variables: aa, bb, cc, dd, ee, jj, ii, ee1 (7 items)
+"cc = float(raw_input('cc=? '))"
+cc=c
+aa=a
+#aa=range(0,101) #you may stay 'aa=range(1,11)' or 'aa=range(1,1001)'
+bb=aa = [float(ii) for ii in aa]
+ii=0
+dd=1.1
+ee=[]
+while ii<len(aa):
+    jj=0
+    while jj<len(bb): 
+        if abs(aa[ii]+bb[jj]-cc)< dd:
+            dd=abs(aa[ii]+bb[jj]-cc)
+            ee.append([aa[ii],'+',bb[jj],'=',aa[ii]+bb[jj],'Error =',dd])
+            ee1=aa[ii]+bb[jj]
+        jj+= 1
+    ii+=1
+"print ee[-1]"
+#=================
+#subtraction
+#used variables: ff, gg, hh, kk, ll, mm, nn, ll1 (7 items)
+"hh = float(raw_input('hh=? '))"
+hh=c
+ff=a
+#ff=range(0,101) #you may stay 'ff=range(1,11)' or 'ff=range(1,1001)'
+gg=ff = [float(nn) for nn in ff]
+nn=0
+kk=1.1
+ll=[]
+while nn<len(ff):
+    mm=0
+    while mm<len(gg): 
+        if abs(ff[nn]-gg[mm]-hh)< kk:
+            kk=abs(ff[nn]-gg[mm]-hh)
+            ll.append([ff[nn],'-',gg[mm],'=',ff[nn]-gg[mm],'Error =',kk])
+            ll1=ff[nn]-gg[mm]
+        mm+= 1
+    nn+=1
+"print ll[-1]"
+#=================
+#comparision.
+#used variables: p,q
+#print 'c =',c
+p=min(d,k,dd,kk)
+if p==d:
+    q=e[-1]
+    #print q
+if p==k:
+    q=l[-1]
+    #print q
+if p==dd:
+    q=ee[-1]
+    #print q
+if p==kk:
+    q=ll[-1]
+    #print q
+#print q
+#for 4.0:
+pp=p
+qq=q
+if c1==-1:
+    qq=['-']+qq
+#=================================================================================
+#=================================================================================
+#Add 3.2.py
+i=0
+a = [float(i) for i in range(1,11)]
+f=[sqrt(i) for i in a] 
+g=[exp(i) for i in a]
+if c==-1:
+    m=[1.0/log[i] for i in a]
+else:
+    m=[log(i) for i in a]
+if c==-1:
+    n=[1.0/log10(i) for i in a]
+else:
+    n=[log10(i) for i in a]
+p=[i**(1/3.0) for i in a]
+q=[i**2.0 for i in a]
+s=[i**3.0 for i in a]
+t=[2.0**i for i in a]
+if c==-1:
+    u=[1.0/log(i,2) for i in a]
+else:
+    u=[log(i,2) for i in a]
+v=[(sqrt(5.0)+1.0)/2.0,pi/6.0,pi/4.0,pi/3.0,pi/2.0,pi,pi*3/2.0,pi*2.0,1/3.0,1/2.0]
+#v=[pi*i for i in vpi]
+
+h=a+f+g+m+n+p+q+s+t+u+v
+i=0
+r=10.1
+while i <len(h):
+    if c>0:
+        if abs(c-h[i])<r:
+            k=h[i]
+            b=i
+            r=abs(c-h[i])
+        i+=1
+#=======================================================
+if z==0:
+    if abs(h[b]-c)<=pp:
+        if 0<=b<=9:
+            pass
+            #print 'Integer'
+        elif 10<=b<=19:
+            print 'sqrt(y)'
+        elif 20<=b<=29:
+            print 'exp(y)'
+        elif 30<=b<=39:
+            print 'log(y)'
+        elif 40<=b<=49:
+            print 'log10(y)'
+        elif 50<=b<=59:
+            print 'y**(1/3)'
+        elif 60<=b<=69:
+            print 'y**2'
+        elif 70<=b<=79:
+            print 'y**3'
+        elif 80<=b<=89:
+            print '2**y'
+        elif 90<=b<=99:
+            print 'log2(y)'
+        elif b==100:
+            print 'fi=(sqrt(5)+1)/2'
+        elif b==101:
+            print 'pi/6'
+        elif b==102:
+            print 'pi/4'
+        elif b==103:
+            print 'pi/3'
+        elif b==104:
+            print 'pi/2'
+        elif b==105:
+            print 'pi'
+        elif b==106:
+            print '3*pi/2'
+        elif b==107:
+            print '2*pi'
+        elif b==108:
+            print '1/3'
+        elif b==109:
+            print '1/2'
+        
+        if 0<=b<=9:
+            bb=b
+        elif 10<=b<=99:
+            bb=b%10
+        elif 100<=b<=1000:
+            bb=b%100
+
+        if not 100<=b<=109:
+            print 'y =',bb+1
+        if c1==-1:
+            print '-f(y)=','-',h[b]
+        else:
+            print 'f(y)=',h[b]
+        print 'Error=',abs(h[b]-c)
+    else:
+        print qq
+
+
+
+
+
